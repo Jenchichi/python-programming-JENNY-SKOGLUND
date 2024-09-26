@@ -3,21 +3,16 @@ path = "Data/datapoints.txt" # Gå in i fil, open folder, välj den mapp som du 
 
 with open(path, "r") as f:
     text = f.read()
-
 # print(repr(text))
-
-import re
 
 quotes = []
 
 with open(path, "r") as f_read, open("Data/datapoints_new.txt", "w") as f_write:
     f_write.write("Pokemon list\n\n")
     for quote in f_read:
-        #quote = quote.strip(" \n")
-        #quote = re.sub(r" +", " ", quote)
         if quote != "":
             f_write.write(f"{quote}\n")
-            #i += 1
+            
 # nedan sorterar listan i datapoints, för att få ut 0 = pichu och 1 = pikachu.
 pichu = []
 pikachu = []
@@ -46,7 +41,7 @@ pichu_y = [y[1] for y in pichu]
 pikachu_x = [x[0] for x in pikachu]
 pikachu_y = [y[1] for y in pikachu]
 
-plt.title("Pikachu and Pichus width and hight. Pikachu as Pink, Pichu as blue")
+plt.title("Pikachu and Pichus width and hight. Pikachu as Purple, Pichu as pink")
 plt.xlabel("Pikachu and Pichus X variable")
 plt.ylabel("Pikachu and Pichus Y variable")
 plt.scatter(pichu_x, pichu_y, marker="*", color="pink")
@@ -65,23 +60,24 @@ with open("Data/testpoints.txt", "r") as test_list:
         line_separate_test = line.strip()
         if line_separate_test:
             text_split_test = line_separate_test.split(",")
-        print(text_split_test)
+        # print(text_split_test)
 
 import math
+import numpy as np
 
 # Function to calculate Euclidean distance between two points
-def euclidean_distance(point1, point2):
-    return math.sqrt((point1[0] - point2[0]) ** 2 + (point1[1] - point2[1]) ** 2)
+#def euclidean_distance(point1, point2):
+#   return math.sqrt((point1[0] - point2[0]) ** 2 + (point1[1] - point2[1]) ** 2)
 
 # List of points (x, y)
-test_points = [(25, 32), (24.2, 31.5), (22, 34), (20.5, 34)]
+# test_points = [(25, 32), (24.2, 31.5), (22, 34), (20.5, 34)]
 
 # Loop to calculate distances between consecutive points
-for i in range(len(test_points) - 1):
-    point1 = test_points[i]
-    point2 = test_points[i + 1]
-    distance = euclidean_distance(point1, point2)
 
+point1 = np.array((25, 24.2, 22, 20.5))
+point2 = np.array((32, 31.5, 34, 34))
+distance = np.linalg.norm(point1 - point2)
+print(distance)
 
 import matplotlib.pyplot as plt
 
@@ -90,4 +86,3 @@ plt.scatter(pichu_x, pichu_y, marker="*", color="pink")
 plt.scatter(pikachu_x, pikachu_y, marker="*", color="purple")
 plt.scatter(point1, point2, marker="X", color="green")
 plt.show()
-
