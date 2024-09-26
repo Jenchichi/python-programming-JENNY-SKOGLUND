@@ -77,7 +77,7 @@ def classify_and_plot(test_points, k=1):  # Set k=1 for nearest neighbor classif
         # Plot the data points and the new point
         for color in points:
             for p in points[color]:
-                plt.scatter(*p, color=[])
+                plt.scatter(*p, color='yellow')
         plt.scatter(*new_point, color=new_class, marker='*', s=200)  # New point with larger size
         print(f"The new point {new_point} is classified as: {new_class}")
  

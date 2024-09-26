@@ -34,7 +34,17 @@ with open("Data/datapoints_new.txt", "r") as list:
                     pikachu.append([width, hight, label])
             except ValueError:
                 print(f"Wrong in lines in the loop 'try' for float and int.")
-points = path
+def making_float(file):
+    points = []
+    for line in open(file, "r"):
+        try:
+            map(float, line.split(","))
+        except ValueError:
+            print(f"file is not defined")
+    return points
+
+points = making_float(path)
+
 
 import matplotlib.pyplot as plt
 pichu_x = [x[0] for x in pichu]
@@ -77,15 +87,21 @@ from collections import Counter
 
 point1 = np.array((25, 24.2, 22, 20.5))
 point2 = np.array((32, 31.5, 34, 34))
-distance = np.linalg.norm(point1 - point2)
+calculate_distance = np.linalg.norm(point1 - point2)
 data_points = {'Pichu': pichu, 'Pikachu': pikachu}
 
-import matplotlib.pyplot as plt
+def classify(test_points, k=1):
+    for new_point in test_points:
+        distance = [(calculate_distance(p, new_point), pokemon) for pokemon in points for p in points[pokemon]]
+        new_class = max(set([cls for _, cls in sorted(distance)[:k]]), key=[cls for _, cls in sorted(distance)[:k]].count)
 
-plt.title("The classification for the nearest point")
-plt.xlabel("X = Width cm")
-plt.ylabel("Y = Height cm")
-plt.scatter(pichu_x, pichu_y, marker="*", color="pink")
-plt.scatter(pikachu_x, pikachu_y, marker="*", color="purple")
-plt.scatter(point1, point2, marker="X", color="green")
-plt.show()
+        for pokemon in points:
+            color = '#FFCC00' if pokemon == 'Pikachu' else '#00CCCC'
+            for p in points[pokemon]:
+                plt.scatter(*p, color=color, label=pokemon if pokemon not in plt.gca().get_legend_handles_labels()[1] else "")
+        plt.scatter(*new_point, color='#FFAA00' if new_class == 'Pikachu' else '#00FFAA', marker='*', s=200, label=f'New Point: {new_class}')
+       
+        print(f"The new point {new_point} is classified as: {new_class}")
+    plt.legend()
+    plt.show()
+classify(test_points, k=1)

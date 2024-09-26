@@ -77,8 +77,25 @@ from collections import Counter
 
 point1 = np.array((25, 24.2, 22, 20.5))
 point2 = np.array((32, 31.5, 34, 34))
-distance = np.linalg.norm(point1 - point2)
-data_points = {'Pichu': pichu, 'Pikachu': pikachu}
+#distance = np.linalg.norm(point1 - point2)
+def calculate_distance(point1, point2, k):
+   return math.sqrt((point1[0] - point2[0])**2 + (point1[1] - point2[1])**2)
+def classify(test_points, k=1):
+    for new_point in test_points:
+        distance = [(calculate_distance(p, new_point), pokemon) for pokemon in points for p in points[pokemon]]
+        nearest_class = [cls for _, cls in sorted(distance)[:k]]
+        new_class = Counter(nearest_class).most_common(1)[0][0]
+
+        for pokemon in points:
+            color = '#FFCC00' if pokemon == 'Pikachu' else '#00CCCC'
+            for p in points[pokemon]:
+                plt.scatter(*p, color=color, label=pokemon if pokemon not in plt.gca().get_legend_handles_labels()[1] else "")
+        plt.scatter(*new_point, color='#FFAA00' if new_class == 'Pikachu' else '#00FFAA', marker='*', s=200, label=f'New Point: {new_class}')
+       
+        print(f"The new point {new_point} is classified as: {new_class}")
+    plt.legend()
+    plt.show()
+    
 
 import matplotlib.pyplot as plt
 
