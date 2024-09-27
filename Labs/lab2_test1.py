@@ -70,6 +70,8 @@ from collections import Counter
 #def euclidean_distance(point1, point2):
 #   return math.sqrt((point1[0] - point2[0]) ** 2 + (point1[1] - point2[1]) ** 2)
 
+euclidean_distance(data_points, test_points):
+
 # List of points (x, y)
 # test_points = [(25, 32), (24.2, 31.5), (22, 34), (20.5, 34)]
 
