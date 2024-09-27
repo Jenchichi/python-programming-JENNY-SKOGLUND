@@ -33,3 +33,16 @@ with open("Data/testpoints.txt", "r") as test_list:
         if line_separate_test:
             text_split_test = line_separate_test.split(",")
         print(text_split_test)
+
+# ny kod:
+def making_float(path):
+    points = []
+    for line in open(path, "r"):
+        try:
+            map(float, line.split(","))
+        except ValueError:
+            print(f"The file can not defined")
+    return points
+
+points = making_float(path)
+print(points)

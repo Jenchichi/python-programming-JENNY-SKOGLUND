@@ -93,7 +93,7 @@ data_points = {'Pichu': pichu, 'Pikachu': pikachu}
 def classify(test_points, k=1):
     for new_point in test_points:
         distance = [(calculate_distance(p, new_point), pokemon) for pokemon in points for p in points[pokemon]]
-        new_class = max(set([cls for _, cls in sorted(distance)[:k]]), key=[cls for _, cls in sorted(distance)[:k]].count)
+        new_class = set([cls for _, cls in sorted(distance)[:k]]), key=[cls for _, cls in sorted(distance)[:k]].count
 
         for pokemon in points:
             color = '#FFCC00' if pokemon == 'Pikachu' else '#00CCCC'

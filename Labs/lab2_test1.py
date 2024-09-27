@@ -34,7 +34,17 @@ with open("Data/datapoints_new.txt", "r") as list:
                     pikachu.append([width, hight, label])
             except ValueError:
                 print(f"Wrong in lines in the loop 'try' for float and int.")
-points = path
+# ny kod:
+def making_float(file):
+    points = []
+    for line in open(file, "r"):
+        try:
+            map(float, line.split(","))
+        except ValueError:
+            print(f"The file can not defined")
+    return points
+
+points = making_float(path)
 
 import matplotlib.pyplot as plt
 pichu_x = [x[0] for x in pichu]
@@ -70,24 +80,50 @@ from collections import Counter
 #def euclidean_distance(point1, point2):
 #   return math.sqrt((point1[0] - point2[0]) ** 2 + (point1[1] - point2[1]) ** 2)
 
-euclidean_distance(data_points, test_points):
-
 # List of points (x, y)
 # test_points = [(25, 32), (24.2, 31.5), (22, 34), (20.5, 34)]
 
 # Loop to calculate distances between consecutive points
 
-point1 = np.array((25, 24.2, 22, 20.5))
-point2 = np.array((32, 31.5, 34, 34))
-distance = np.linalg.norm(point1 - point2)
-data_points = {'Pichu': pichu, 'Pikachu': pikachu}
+#point1 = [(25, 24.2, 22, 20.5)]
+#point2 = [(32, 31.5, 34, 34)]
+#distance = np.linalg.norm(point1 - point2)
+#data_points = {'Pichu': pichu, 'Pikachu': pikachu}
 
-import matplotlib.pyplot as plt
+#Ny kod:
+def euclidean_distance(x, y):
+   return np.linalg.norm(np.array(x) - np.array(y), ord=2)
 
-plt.title("The classification for the nearest point")
-plt.xlabel("X = Width cm")
-plt.ylabel("Y = Height cm")
-plt.scatter(pichu_x, pichu_y, marker="*", color="pink")
-plt.scatter(pikachu_x, pikachu_y, marker="*", color="purple")
-plt.scatter(point1, point2, marker="X", color="green")
-plt.show()
+def classify(test, k=1):
+    for new_point in test:
+        calc_dist = [(euclidean_distance(x, new_point), pokemon) for pokemon in points for x in points[pokemon]]
+        
+        for pokemon, pokemon_list in points:
+            color = 'Purple' if pokemon == 'Pikachu' else 'Pink'
+            plt.scatter(*zip(*pokemon_list), color=color, label=pokemon)
+        plt.scatter(*new_point, color= 'green' if new_classifikation == 'Pikachu' else 'red', marker='X', s=200, label=f"The new test point: {new_classifikation}")
+    plt.legend()
+    plt.show()
+
+
+def get_user_input():
+    while True:
+        try:
+            return [float(input("Enter the x-coordinate of the new point: ")), float(input("Enter the y-coordinate of the new point: "))]
+        except ValueError:
+            print("Invalid input. Please enter numerical values.")
+
+user_input = get_user_input()
+test = [user_input]
+
+classify(test, k=1)
+
+#import matplotlib.pyplot as plt
+
+#plt.title("The classification for the nearest point")
+#plt.xlabel("X = Width cm")
+#plt.ylabel("Y = Height cm")
+#plt.scatter(pichu_x, pichu_y, marker="*", color="pink")
+#plt.scatter(pikachu_x, pikachu_y, marker="*", color="purple")
+#plt.scatter(point1, point2, marker="X", color="green")
+#plt.show()
