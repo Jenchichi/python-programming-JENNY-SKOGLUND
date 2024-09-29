@@ -1,102 +1,83 @@
 # Datapoints
 path = "Data/datapoints.txt" # Gå in i fil, open folder, välj den mapp som du vill öppna vs code med. (Python-programming-JENNY_SKOGLUND)
+def open_text(path):
+    with open(path, "r") as f:
+        next(f)
+        return f.readlines()
+#print(repr(text))
 
-with open(path, "r") as f:
-    text = f.read()
-# print(repr(text))
+def clean_data(data): # funktion som gör en lista av alla rader i Data/datapoints.txt
+    clean_data = []
+    for line in data:
+        clean_line = line.strip().split(",")
+        clean_data.append(clean_line)
+    return clean_data
+# print(clean_data(open_text(path)))
 
-quotes = []
-
-with open(path, "r") as f_read, open("Data/datapoints_new.txt", "w") as f_write:
-    f_write.write("Pokemon list\n\n")
-    for quote in f_read:
-        if quote != "":
-            f_write.write(f"{quote}\n")
-            
-# nedan sorterar listan i datapoints, för att få ut 0 = pichu och 1 = pikachu.
-pichu = []
-pikachu = []
-
-with open("Data/datapoints_new.txt", "r") as list:
-    for line in list:
-        line_separate = line.strip()
-        if line_separate:
-            text_split = line_separate.split(",")
-
-            try:
-                width = round(float(text_split[0].strip()), 2)
-                hight = round(float(text_split[1].strip()), 2)
-                label = int(text_split[2].strip())
-
-                if label == 0:
-                    pichu.append([width, hight, label])
-                elif label == 1:
-                    pikachu.append([width, hight, label])
-            except ValueError:
-                print(f"Wrong in lines in the loop 'try' for float and int.")
-# ny kod:
-def making_float(file):
-    points = []
-    for line in open(file, "r"):
-        try:
-            map(float, line.split(","))
-        except ValueError:
-            print(f"The file can not defined")
-    return points
-
-points = making_float(path)
-
-import matplotlib.pyplot as plt
-pichu_x = [x[0] for x in pichu]
-pichu_y = [y[1] for y in pichu]
-pikachu_x = [x[0] for x in pikachu]
-pikachu_y = [y[1] for y in pikachu]
-
-plt.title("Pikachu and Pichus width and hight. Pikachu as Purple, Pichu as pink")
-plt.xlabel("Pikachu and Pichus X variable")
-plt.ylabel("Pikachu and Pichus Y variable")
-plt.scatter(pichu_x, pichu_y, marker="*", color="pink")
-plt.scatter(pikachu_x, pikachu_y, marker="*", color="purple")
-plt.show()
-
-# Test points
+def separate_clean_data(data): # funktion som hämtar värderna från clean_data och appendar pichus x, y värde från label 0. samt pikachus x,y värde fråm label 1.
+    pichu = []
+    pikachu = []
+    for row in data:
+        width,hight,label = row
+        if label == " 0":
+            pichu.append((float(width), float(hight)))
+        elif label == " 1":
+            pikachu.append((float(width), float(hight)))
+    return pichu, pikachu
+#print(separate_clean_data(clean_data(open_text(path))))
 
 path_test = "Data/testpoints.txt" 
 
-with open(path_test, "r") as f:
-    test_points = f.read()
+def open_test(path_test):
+    with open(path_test, "r") as t:
+        return t.read()
 
-with open("Data/testpoints.txt", "r") as test_list:
-    for line in test_list:
-        line_separate_test = line.strip()
-        if line_separate_test:
-            text_split_test = line_separate_test.split(",")
-        # print(text_split_test)
+def new_test_points(): # Gör en lista från testpoints som printas i terminalen.
+    new_koordinats = []
+    with open("Data/testpoints.txt", "r") as test_list:
+        next(test_list)
+        for line in test_list:
+            koordinats = line.split('(')[1].split(')')[0].split(',')
+            x = float(koordinats[0])
+            y = float(koordinats[1])
+            new_koordinats.append((x,y))
+    return new_koordinats
+print(new_test_points())
 
-import math
-import numpy as np
-from collections import Counter
-# Function to calculate Euclidean distance between two points
-#def euclidean_distance(point1, point2):
-#   return math.sqrt((point1[0] - point2[0]) ** 2 + (point1[1] - point2[1]) ** 2)
+#distance = math.sqrt((pointx - pointy)**2 + (pointx - pointy)**2)
 
-# List of points (x, y)
-# test_points = [(25, 32), (24.2, 31.5), (22, 34), (20.5, 34)]
-
-# Loop to calculate distances between consecutive points
-
-point1 = np.array((25, 24.2, 22, 20.5))
-point2 = np.array((32, 31.5, 34, 34))
-distance = np.linalg.norm(point1 - point2)
-data_points = {'Pichu': pichu, 'Pikachu': pikachu}
-
+def knn_equation(pichu, pikachu, nearest_point):
+    classifikation = []
+    for point in nearest_point:
+        minimum_distance = float('inf') # letar efter minsta distansen
+        closest_point = None
+        for data_point in pichu + pikachu:
+            distance = math.sqrt((point[0] - float(data_point[0]))**2 + (point[1] - float(data_point[1]))**2)
+            if distance < minimum_distance:
+                minimum_distance = distance
+                closest_point = data_point
+        classify = 0 if closest_point in pichu else 1
+        classifikation.append(classify)
+    return classifikation
+print(knn_equation(*separate_clean_data(clean_data(open_text(path))), new_test_points()))
 
 import matplotlib.pyplot as plt
+import numpy as np
+import math
 
-plt.title("The classification for the nearest point")
-plt.xlabel("X = Width cm")
-plt.ylabel("Y = Height cm")
-plt.scatter(pichu_x, pichu_y, marker="*", color="pink")
-plt.scatter(pikachu_x, pikachu_y, marker="*", color="purple")
-plt.scatter(point1, point2, marker="X", color="green")
-plt.show()
+def plott_classify_pokemon(new_point, pichu, pikachu): # Klassificerar ny data
+    plott_new_classify_pokemon = knn_equation(pichu, pikachu, new_point)
+
+    plt.scatter(*zip(*pichu), color= 'hotpink', label= 'Pichu', marker='*')
+    plt.scatter(*zip(*pikachu), color= 'purple', label = 'Pikachu', marker='*')
+    plt.title("Classification for the nearest point")
+    plt.xlabel("X = Lenght")
+    plt.ylabel("Y = Height")
+
+    pichu_new_class = [point for point, classifikation in zip(new_point, plott_new_classify_pokemon) if classifikation == 0]
+    pikachu_new_class = [point for point, classifikation in zip(new_point, plott_new_classify_pokemon) if classifikation == 1]
+    plt.scatter([point[0] for point in pichu_new_class], [point[1] for point in pichu_new_class], color= 'aqua', label= 'New Pichu Point', marker= "X")
+    plt.scatter([point[0] for point in pikachu_new_class], [point[1] for point in pikachu_new_class], color= 'deepskyblue', label= 'New Pikachu Point', marker= "X")
+    plt.legend()
+    plt.show()
+plott_classify_pokemon(new_test_points(), *separate_clean_data(clean_data(open_text(path))))
