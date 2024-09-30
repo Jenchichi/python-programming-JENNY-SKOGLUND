@@ -40,29 +40,28 @@ import math
 #    plt.show()
 #plott_pokemon(*separate_clean_data(clean_data(open_text(path))))
 
-path_test = "Data/testpoints.txt" 
+#path_test = "Data/testpoints.txt" 
 
-def open_test(path_test):
-    with open(path_test, "r") as t:
-        return t.read()
+#def open_test(path_test):
+#    with open(path_test, "r") as t:
+#        return t.read()
 
-def new_test_points(): # Gör en lista från testpoints som printas i terminalen.
-    new_koordinats = []
-    with open("Data/testpoints.txt", "r") as test_list:
-        next(test_list)
-        for line in test_list:
-            koordinats = line.split('(')[1].split(')')[0].split(',')
-            x = float(koordinats[0])
-            y = float(koordinats[1])
-            new_koordinats.append((x,y))
-    return new_koordinats
-print(new_test_points())
+#def new_test_points(): # Gör en lista från testpoints som printas i terminalen.
+#    new_koordinats = []
+#    with open("Data/testpoints.txt", "r") as test_list:
+#        next(test_list)
+#        for line in test_list:
+#            koordinats = line.split('(')[1].split(')')[0].split(',')
+#            x = float(koordinats[0])
+#            y = float(koordinats[1])
+#            new_koordinats.append((x,y))
+#    return new_koordinats
+#print(new_test_points())
 
-#distance = math.sqrt((pointx - pointy)**2 + (pointx - pointy)**2)
 
-def knn_equation(pichu, pikachu, nearest_point):
+def knn_equation(pichu, pikachu, user_input):
     classifikation = []
-    for point in nearest_point:
+    for point in user_input:
         minimum_distance = float('inf') # letar efter minsta distansen
         closest_point = None
         for data_point in pichu + pikachu:
@@ -73,10 +72,10 @@ def knn_equation(pichu, pikachu, nearest_point):
         classify = 0 if closest_point in pichu else 1
         classifikation.append(classify)
     return classifikation
-print(knn_equation(*separate_clean_data(clean_data(open_text(path))), new_test_points()))
+#print(knn_equation(*separate_clean_data(clean_data(open_text(path))), new_test_points()))
 
-def plott_classify_pokemon(new_point, pichu, pikachu): # Klassificerar ny data
-    plott_new_classify_pokemon = knn_equation(pichu, pikachu, new_point)
+def plott_classify_pokemon(pichu, pikachu, user_input): # Klassificerar ny data
+    plott_new_classify_pokemon = knn_equation(pichu, pikachu, user_input)
 
     plt.scatter(*zip(*pichu), color= 'hotpink', label= 'Pichu', marker='*')
     plt.scatter(*zip(*pikachu), color= 'purple', label = 'Pikachu', marker='*')
@@ -85,27 +84,30 @@ def plott_classify_pokemon(new_point, pichu, pikachu): # Klassificerar ny data
     plt.ylabel("Y = Height")
 
     # Plottar ny data och klassificerar dessa som Pichu eller Pikachu
-    #plt.scatter([point[0] for point in pichu], [point[1] for point in pichu], color= 'hotpink', label= 'Pichu', marker= "*")
-    #plt.scatter([point[0] for point in pikachu], [point[1] for point in pikachu], color= 'purple', label= 'Pikachu', marker= "*")
-    pichu_new_class = [point for point, classifikation in zip(new_point, plott_new_classify_pokemon) if classifikation == 0]
-    pikachu_new_class = [point for point, classifikation in zip(new_point, plott_new_classify_pokemon) if classifikation == 1]
-    plt.scatter([point[0] for point in pichu_new_class], [point[1] for point in pichu_new_class], color= 'aqua', label= 'New Pichu Point', marker= "X")
-    plt.scatter([point[0] for point in pikachu_new_class], [point[1] for point in pikachu_new_class], color= 'deepskyblue', label= 'New Pikachu Point', marker= "X")
+    for i, classifikation in enumerate(plott_new_classify_pokemon):
+        if classifikation == 0:
+            plt.scatter(user_input[i][0], user_input[i][1], color= 'aqua', label= 'New Pichu Point', marker= "X")
+        else:
+            plt.scatter(user_input[i][0], user_input[i][1], color= 'deepskyblue', label= 'New Pikachu Point', marker= "X")
     plt.legend()
     plt.show()
-plott_classify_pokemon(new_test_points(), *separate_clean_data(clean_data(open_text(path))))
+#plott_classify_pokemon(new_test_points(), *separate_clean_data(clean_data(open_text(path))))
 
 def user_input():
-    x = float(input("Please enter an x-coordinate: "))
-    y = float(input("Please enter an y-coordinate: "))
-    print(f"The coordinate you choosed are: {x}, {y} and its classified as: ")
-    if x < 0 or y < 0:
-        print(f"Coordinates can't be negative.")
-        x = float(input(f"Please select new coordinates for x: "))
-        y = float(input(f"Please select new coordinates for y: "))
-        print(f"The new coordinate you choosed are: {x}, {y} and its classified as: ")
-        
-input = user_input()
+    while True:
+        try:
+            x = float(input("Please enter an x-coordinate: "))
+            y = float(input("Please enter an y-coordinate: "))
 
+            if x < 0 or y < 0:
+                print(f"Coordinates can't be negative. Please select new coordinates for X and Y.")
+                
+            else:
+                print(f"The coordinate you choosed are: ({x}, {y}) and its classified in the Plot.")
+                return [(x, y)]
+        except ValueError:
+            print("Invalid. You can only choose numeric inputs. Please choose positiv input for X and Y.")
 
-
+user_inputs = user_input()
+input = user_inputs
+plott_classify_pokemon(*separate_clean_data(clean_data(open_text(path))), input)
