@@ -1,10 +1,10 @@
 # Datapoints
 path = "Data/datapoints.txt" # Gå in i fil, open folder, välj den mapp som du vill öppna vs code med. (Python-programming-JENNY_SKOGLUND)
-def open_text(path):
-    with open(path, "r") as f:
-        next(f)
-        return f.readlines()
-#print(repr(open_text(path)))
+
+with open(path, "r") as f:
+    next(f)
+    data = f.readlines()
+#print(repr(text))
  
 def clean_data(data): # funktion som gör en lista av alla rader i Data/datapoints.txt
     clean_data = []
@@ -73,7 +73,10 @@ def user_input():
                 return [(x, y)]
         except ValueError:
             print("Invalid. You can only choose numeric inputs. Please choose positiv input for X and Y.")
- 
+
+pichu, pikachu = separate_clean_data(clean_data(data))
 user_inputs = user_input()
 input = user_inputs
-plott_classify_pokemon(*separate_clean_data(clean_data(open_text(path))), input, k=10)
+plott_classify_pokemon(pichu, pikachu, input, k=10)
+
+print(pikachu)
