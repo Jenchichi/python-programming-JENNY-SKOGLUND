@@ -59,6 +59,7 @@ import math
 #print(new_test_points())
 
 
+
 def knn_equation(pichu, pikachu, user_input):
     classifikation = []
     for point in user_input:

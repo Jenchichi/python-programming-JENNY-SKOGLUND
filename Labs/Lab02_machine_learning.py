@@ -29,8 +29,8 @@ def separate_clean_data(data): # funktion som hämtar värderna från clean_data
 import matplotlib.pyplot as plt
 import numpy as np
 import math
-
-def knn_equation(pichu, pikachu, user_input, k=10):
+# KNN algoritm som tar 10 närmsta punkterna samt klassificerar dessa. Koden är inspiration från källor som Stack Overflow, GeeksforGeeks, och Real Python. 
+def knn_equation(pichu, pikachu, user_input, k=10): 
     classification = []
     for point in user_input:
         closest_points = sorted(pichu + pikachu, key=lambda x: math.sqrt((point[0] - float(x[0]))**2 + (point[1] - float(x[1]))**2))[:k]
@@ -39,9 +39,9 @@ def knn_equation(pichu, pikachu, user_input, k=10):
         classify = 0 if labels.count(0) > labels.count(1) else 1
         classification.append(classify)
     return classification
-#print(knn_equation(*separate_clean_data(clean_data(open_text(path))), new_test_points()))
+
  
-def plott_classify_pokemon(pichu, pikachu, user_input, k=3): # Klassificerar ny data
+def plott_classify_pokemon(pichu, pikachu, user_input, k=10): # Klassificerar ny data
     plott_new_classify_pokemon = knn_equation(pichu, pikachu, user_input)
     plt.scatter(*zip(*pichu), color= 'hotpink', label= 'Pichu', marker='*')
     plt.scatter(*zip(*pikachu), color= 'purple', label = 'Pikachu', marker='*')
@@ -49,15 +49,15 @@ def plott_classify_pokemon(pichu, pikachu, user_input, k=3): # Klassificerar ny 
     plt.xlabel("X = Lenght")
     plt.ylabel("Y = Height")
  
-    # Plottar ny data och klassificerar dessa som Pichu eller Pikachu
-    for i, classifikation in enumerate(plott_new_classify_pokemon):
+    # Plottar ny data och klassificerar dessa som Pichu eller Pikachu. koden är inspiration från realpython, denna sida https://www.geeksforgeeks.org/enumerate-in-python/. samt gjort felsökning med chatgpt.
+    for i, classifikation in enumerate(plott_new_classify_pokemon): 
         if classifikation == 0:
             plt.scatter(user_input[i][0], user_input[i][1], color= 'aqua', label= 'New Pichu Point', marker= "X")
         else:
             plt.scatter(user_input[i][0], user_input[i][1], color= 'deepskyblue', label= 'New Pikachu Point', marker= "X")
     plt.legend()
     plt.show()
-#plott_classify_pokemon(new_test_points(), *separate_clean_data(clean_data(open_text(path))))
+
  
 def user_input():
     while True:
