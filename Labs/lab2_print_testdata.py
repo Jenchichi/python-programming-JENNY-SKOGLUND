@@ -32,7 +32,7 @@ def separate_clean_data(data):
 import matplotlib.pyplot as plt
 import numpy as np
 import math
-# KNN algoritm som tar 10 närmsta punkterna samt klassificerar dessa. Koden är inspiration från källor som Stack Overflow, GeeksforGeeks, W3Schools och Real Python. samt gjort felsökning med chatgpt.
+# KNN algoritm som tar 10 närmsta punkterna samt beräknar och klassificerar dessa. Koden är inspiration från källor som Stack Overflow, GeeksforGeeks, W3Schools och Real Python. samt gjort felsökning med chatgpt.
 def knn_equation(pichu, pikachu, user_input, k=10): 
     classification = []
     for point in user_input:
