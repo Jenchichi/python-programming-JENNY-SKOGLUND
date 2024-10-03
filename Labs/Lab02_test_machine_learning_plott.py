@@ -4,7 +4,7 @@ def open_text(path):
     with open(path, "r") as f:
         next(f) # Hoppar över första raden i datapoints filen
         return f.readlines()
-print(repr(open_text(path)))
+#print(repr(open_text(path)))
  
 def clean_data(data): # funktion som gör en lista av alla rader i Data/datapoints.txt
     clean_data = []
@@ -12,7 +12,7 @@ def clean_data(data): # funktion som gör en lista av alla rader i Data/datapoin
         clean_line = line.strip().split(",")
         clean_data.append(clean_line)
     return clean_data
-print(clean_data(open_text(path)))
+#print(clean_data(open_text(path)))
  
 def separate_clean_data(data): # funktion som hämtar värderna från clean_data och appendar pichus x, y värde från label 0. samt pikachus x,y värde från label 1.
     pichu = []

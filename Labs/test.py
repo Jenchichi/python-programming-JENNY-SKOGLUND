@@ -10,6 +10,7 @@ with open(path, "r") as f:
         width, hight, label = line.strip().split(",")
         data_points.append((width, hight, label))
 
+# Separerar datan och skapar två listor med Pichu och Pikachus punkter. Där Pichus label== 0 och Pikachus label==1
 def separate_clean_data(data): 
     pichu = []
     pikachu = []
@@ -52,17 +53,6 @@ distances = []
 for test_point in test_data:
     for train_point in train_data:
         distance = math.sqrt((test_point[0] - (train_point[0]))**2 + (test_point[1] - (train_point[1]))**2)
-        distances.append(distance, train_point)
-#print(distances)
+        distances.append(distance)
+print(len(distances))
 
-
-# Pikachu = TP
-# Pichu = TN
-# accuracy: TP + TN / Total
-
-TP = pikachu
-TN = pichu
-Total = pokemon_list
-
-accuracy = (len(TP) + len(TN)) / len(distances)
-print(f"Accuracy: {accuracy}")
