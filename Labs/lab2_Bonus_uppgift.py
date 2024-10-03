@@ -80,12 +80,11 @@ print("TN:", TN)
 print("FP:", FP)
 print("FN:", FN)
 print(f"accuracy: {accuracy*100}%")
-print(f"Medel accuracy: {round(accuracy_medel*100, 2)}%")
+print(f"Medelaccuracy: {round(accuracy_medel*100, 2)}%")
 
 # Plotta resultaten
 plt.figure(figsize=(10, 6))
 plt.plot(range(len(accuracy_medel_list)), accuracy_medel_list)
-
 plt.title("Calculation of the accuracy")
 plt.xlabel("Number of Measurment")
 plt.ylabel("Accuracy")
