@@ -30,30 +30,30 @@ for _ in range(11):
  
     pichu, pikachu = separate_clean_data(data_points)
  
-# Blandar listorna och tar ut 50 random punkter(x,y) från pikachu och Pichu listan samt 25 punkter(x,y) från pikachu och pichu listan.
+# Blandar listorna och tar ut 50 random punkter(x,y) från pikachu och Pichu listan samt 25 punkter(x,y) från pikachu och pichu listan. Koden är inspiration från w3schools, stackoverflow.
     random.shuffle(pichu)
     random.shuffle(pikachu)
     pichu_50 = [p for p in pichu][:50]
     pikachu_50 = [p for p in pikachu][:50]
     pichu_25 = [p for p in pichu][:25]
     pikachu_25 = [p for p in pikachu][:25]
- 
+
 # Bonus uppgift, 4)
 # Klassificerar Pichu och Pikachu: pichu_50 och pikachu_50 = träningsdata. pichu_25 och pikachu_25 = testpunkter.
     train_data = pichu_50 + pikachu_50
     test_data = pichu_25 + pikachu_25
 
-    # Skapa en lista med etiketter för testpunkterna
+    # Skapa en lista med etiketter för testpunkterna. Koden är inspiration från kodrummet.se
     test_labels = [0] * len(pichu_25) + [1] * len(pikachu_25)
     
     # Skapa en lista med etiketter för träningspunkterna
     train_labels = [0] * len(pichu_50) + [1] * len(pikachu_50)
 
-    # Använd KNN-klassificerare
+    # Använd KNN-klassificerare. Koden är inspiration från en dokumentation på denna hemsidan: https://scikit-learn.org/stable/modules/neighbors.html
     knn = KNeighborsClassifier(10)
     knn.fit(train_data, train_labels)
     predictions = knn.predict(test_data)
-    # Beräkna TP, TN, FP och FN
+    # Beräkna TP, TN, FP och FN. Koden är inspiration från stackoverflow, github. samt felsökning via chatgpt.
     TP = 0
     TN = 0
     FP = 0
@@ -85,8 +85,8 @@ print(f"Medel accuracy: {round(accuracy_medel*100, 2)}%")
 # Plotta resultaten
 plt.figure(figsize=(10, 6))
 plt.plot(range(len(accuracy_medel_list)), accuracy_medel_list)
-plt.plot(color= 'pink')
+
 plt.title("Calculation of the accuracy")
-plt.xlabel("Measurment")
+plt.xlabel("Number of Measurment")
 plt.ylabel("Accuracy")
 plt.show()

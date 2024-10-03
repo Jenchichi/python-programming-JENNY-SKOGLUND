@@ -1,4 +1,4 @@
-# Bonus uppgift, 3)
+# Bonus uppgift, 3) EJ FÄRDIG!
 # Gå in i fil, open folder, välj den mapp som du vill öppna vs code med. (Python-programming-JENNY_SKOGLUND)
 path = "Data/datapoints.txt" 
 
