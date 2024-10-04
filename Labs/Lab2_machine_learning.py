@@ -1,4 +1,4 @@
-# Gå in i fil, open folder, välj den mapp som du vill öppna vs code med. (Python-programming-JENNY_SKOGLUND)
+# Gå in i fil, open folder, välj mapp: (Python-programming-JENNY_SKOGLUND)
 # Datapoints
 path = "Data/datapoints.txt" 
 
@@ -32,7 +32,7 @@ def separate_clean_data(data):
 import matplotlib.pyplot as plt
 import numpy as np
 import math
-# KNN algoritm som tar 10 närmsta punkterna samt beräknar och klassificerar dessa. Koden är inspiration från källor som Stack Overflow, GeeksforGeeks, W3Schools och Real Python. samt gjort felsökning med chatgpt.
+# KNN algoritm som tar 10 närmsta punkterna samt beräknar och klassificerar dessa. Koden är inspiration från källor från Stack Overflow, GeeksforGeeks, W3Schools och Real Python. samt gjort felsökning med chatgpt.
 def knn_equation(pichu, pikachu, user_input, k=10): 
     classification = []
     for point in user_input:
@@ -51,7 +51,7 @@ def plott_classify_pokemon(pichu, pikachu, user_input, k=10):
     plt.xlabel("X = Lenght")
     plt.ylabel("Y = Height")
 
-    # Plottar ny data och klassificerar dessa som Pichu eller Pikachu. koden är inspiration från realpython, Stack Overflow, GeeksforGeeks. samt gjort felsökning med chatgpt.
+    # Plottar ny data via user_input och klassificerar dessa som Pichu eller Pikachu. Koden är inspiration från Real Python, Stack Overflow, GeeksforGeeks. samt gjort felsökning med chatgpt.
     for i, classifikation in enumerate(plott_new_classify_pokemon): 
         if classifikation == 0:
             plt.scatter(user_input[i][0], user_input[i][1], color= 'aqua', label= 'New Pichu Point', marker= "X")

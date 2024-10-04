@@ -1,9 +1,10 @@
+# Bonus uppgift, 3 & 4)
+# Gå in i fil, open folder, välj den mapp som du vill öppna vs code med. (Python-programming-JENNY_SKOGLUND)
 import math
 from sklearn.neighbors import KNeighborsClassifier
 import matplotlib.pyplot as plt
 import random
-# Bonus uppgift, 3 & 4)
-# Gå in i fil, open folder, välj den mapp som du vill öppna vs code med. (Python-programming-JENNY_SKOGLUND)
+
 path = "Data/datapoints.txt"
 accuracy_medel_list = []
 
@@ -83,9 +84,9 @@ print(f"accuracy: {accuracy*100}%")
 print(f"Medelaccuracy: {round(accuracy_medel*100, 2)}%")
 
 # Plotta resultaten
-plt.figure(figsize=(10, 6))
+plt.figure(figsize=(9, 6))
 plt.plot(range(len(accuracy_medel_list)), accuracy_medel_list)
-plt.title("Calculation of the accuracy")
+plt.title("Calculation of the accuracy for TP, TN, FP, FN over 10 measurment")
 plt.xlabel("Number of Measurment")
 plt.ylabel("Accuracy")
 plt.show()
