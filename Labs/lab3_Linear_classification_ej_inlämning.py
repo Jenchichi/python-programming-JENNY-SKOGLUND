@@ -23,4 +23,3 @@ line = [k * xi + m for xi in x_point]
 plt.plot(x_point, line, color = "red")
 plt.show()
 
-
