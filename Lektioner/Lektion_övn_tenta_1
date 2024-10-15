@@ -1,0 +1,20 @@
+# Variabler och konstanter
+# Varibler = är bitar av minne som innehåller tal. Vi tolkar talen beroende på vilken _typ_ variabeln har.
+# Konstanter = är "immutable", dvs kan inte förändras efter det skapats.
+
+# exempel på olika datatyper:
+# a: int = 42
+# b: str = "Hejsan"
+# c: list = [2,3,4]
+
+# Lists can have different objects in them, aka "Polytypic lists"
+# d: list = ["2", 3, 2.0]
+# kv: dict = {"Ada": 1, "Lovelock": 2, "Einstein": 3}
+# sm: set = {1,2,3,4}
+# sm2: set = {"a", "b"}
+
+# Sets can also have different types, as long as they can be 'hashed', ie converted to numbers.
+# sm3: set = {"a", 1}
+
+#const = (1,2)
+#const = (1,)
