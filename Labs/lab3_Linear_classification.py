@@ -39,6 +39,14 @@ above_line, below_line = point_position_from_line(x_point, y_point, k, m)
 print(f"Points above the line: {len(above_line)}")
 print(f"Points below the line: {len(below_line)}")
 
+line = [k * xi + m for xi in x_point]
+plt.plot(x_point, line, color = "black")
+plt.scatter(x_point, y_point, color=['blue' if (xi, yi) in above_line else 'pink' for xi, yi in zip(x_point, y_point)])
+plt.title("Classifikation of points with y = kx + m")
+plt.xlabel("X")
+plt.ylabel("Y")
+plt.show()
+
 with open("Data/labelled_data.csv", "w", newline='') as f_write:
     csv_writer = csv.writer(f_write)
 
@@ -46,10 +54,3 @@ with open("Data/labelled_data.csv", "w", newline='') as f_write:
     sorted_label = sorted(zip(x_point, y_point, label))
     for (x_point, y_point, label) in sorted_label:
         f_write.write(f"{x_point}, {y_point}, {label}" '\n')
-
-
-
-#y_point = k * x_point + m
-
-#plt.scatter(x_point, y_point, color=['blue' if (xi, yi) in above_line else 'red' for xi, yi in zip(x_point, y_point)])
-#plt.show()
