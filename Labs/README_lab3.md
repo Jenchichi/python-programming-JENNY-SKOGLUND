@@ -3,7 +3,7 @@ The program calculates whether the point is above/left of or below/right of the 
 This is done with linear algebra and the mathematical formula y = kx + m. The program imports the file unlabelled_data.csv where each line gets an x ​​and a y coordinate.
 - The program goes through each line in the file and chooses that x always is the index value 0 and y always takes the index value 1.
 
-#### Calculation y = kx + m
+### Calculation y = kx + m
 - The program calculates whether the point is above/below the line.
 - If the point's y value is greater than the line's y value, then the point is classified as above the line (above_line)
 - If the point's y value is less than the line's y value, then the point is classified as below the line (below_line)
