@@ -38,17 +38,17 @@ print(frukter[-1]) #För att läsa sista elementet(Mango). [-2] för näst sista
 - .pop(index) --> kan användas för att ta bort elementet på plats index ur listan.
 
 - Exempel på att lägga till och ta bort element från en tom lista:
-frukter = []
-frukter.append('Äpple')
-frukter.append('Banan')
-frukter.append('Mango') #frukter = ['Äpple', 'Banan', 'Mango']
-print(f'frukter = {frukter}')
+* frukter = []
+* frukter.append('Äpple')
+* frukter.append('Banan')
+* frukter.append('Mango') #frukter = ['Äpple', 'Banan', 'Mango']
+* print(f'frukter = {frukter}')
 
-frukter.pop(0) #ta bort första elementet, 'Äpple'.
-print('frukter = ' + str(frukter))
-frukter.pop(-1) #ta bort sista elementet, 'Mango'.
-print('frukter = ' + str(frukter))
-output:
-frukter = ['Äpple', 'Banan', 'Mango']
-frukter = ['Banan', 'Mango']
-frukter = ['Banan]
+* frukter.pop(0) #ta bort första elementet, 'Äpple'.
+* print('frukter = ' + str(frukter))
+* frukter.pop(-1) #ta bort sista elementet, 'Mango'.
+* print('frukter = ' + str(frukter))
+- output:
+* frukter = ['Äpple', 'Banan', 'Mango']
+* frukter = ['Banan', 'Mango']
+* frukter = ['Banan]
