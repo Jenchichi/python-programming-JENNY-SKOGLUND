@@ -7,15 +7,15 @@
 - Python-Tuppel med noll objekt --> ()
 - Python-Tuppel med objekt --> (1,2,3,4) anger kommaseparerade värden inom parantesen
 - Exempel på saker som går att göra med listor som också går att göra med tupler.
-min_tupel = (2, 3, 5, 7, 11)
-print(min_tupel[0]) #skriv ut det första elementet
-print(min_tupel[0:3]) #de första tre elementen
-print(5 in min_tupel) #finns 5 i tupeln? #True or False
+- min_tupel = (2, 3, 5, 7, 11)
+- print(min_tupel[0]) #skriv ut det första elementet
+- print(min_tupel[0:3]) #de första tre elementen
+- print(5 in min_tupel) #finns 5 i tupeln? #True or False
 #### Fel:
 - om man försöker ändra i en tupel skrivs ett felmeddelande ut.
 - Exempel:
-tupel = ("a", "a", "c")
-tupel [1] = "b" #Fel
+- tupel = ("a", "a", "c")
+- tupel [1] = "b" #Fel
 
 ## Listor
 - Lista kan även kallas array, lista eller vektor i programmerings språk. Dock i Python så används ordet Lista.
@@ -44,7 +44,7 @@ tupel [1] = "b" #Fel
 #### Lägga till och ta bort element:
 - För att skapa en tom lista kan man skriva: frukter = []
 - För varje lista som skapas så kan man använda funktioner som .append() och .pop()
-- .append() --> För att lägga till element i listan. Det nta elementet hamnar sist i listan när det printas.
+- .append() --> För att lägga till element i listan. Det nya elementet hamnar sist i listan när det printas.
 - .pop(index) --> kan användas för att ta bort elementet på plats index ur listan.
 
 #### Exempel på att lägga till och ta bort element från en tom lista:
@@ -60,7 +60,7 @@ tupel [1] = "b" #Fel
 - output:
 - frukter = ['Äpple', 'Banan', 'Mango']
 - frukter = ['Banan', 'Mango']
-- frukter = ['Banan]
+- frukter = ['Banan']
 
 #### Listans längd:
 - För att se hur många element som finns i en lista kan vi använda en funktion som heter len() med listan som argument.
@@ -76,3 +76,4 @@ tupel [1] = "b" #Fel
 - print(squared_numbers)
 - output [1, 4, 9, 16, 25]
 
+## Dictionary
