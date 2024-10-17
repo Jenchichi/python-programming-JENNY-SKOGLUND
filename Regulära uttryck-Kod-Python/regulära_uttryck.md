@@ -38,8 +38,8 @@ print(frukter[-1]) #För att läsa sista elementet(Mango). [-2] för näst sista
 - .pop(index) --> kan användas för att ta bort elementet på plats index ur listan.
 
 - Exempel på att lägga till och ta bort element från en tom lista:
-* frukter = []
-* frukter.append('Äpple')
+#frukter = []
+#frukter.append('Äpple')
 * frukter.append('Banan')
 * frukter.append('Mango') #frukter = ['Äpple', 'Banan', 'Mango']
 * print(f'frukter = {frukter}')
