@@ -28,10 +28,20 @@ print(frukter[0]) #För att läsa andra elementet skriv frukter[1]
 
 - Man kan även använda negativa index för att gå baklänges från slutet i listan.
 - Exempel:
-frukter = ["Äpple", "Banan", "Mango"]
-print(frukter[-1]) #För att läsa sista elementet(Mango). [-2] för näst sista osv.
+- frukter = ["Äpple", "Banan", "Mango"]
+- print(frukter[-1]) #För att läsa sista elementet(Mango). [-2] för näst sista osv.
 
-#### Lägga till och ta bort element
+- Ett annat exempel för att endast välja ut en index position:
+- frukter1 = ["jordgubbe" , "vindruva", 'grape']
+- godfrukt = frukter1[2]
+- print (godfrukt[-1]) #Här kommer sista bokstaven i grape läsas alltså: e
+
+#### Sortera Listor:
+- Man kan använda både .sort() och .sorted() för att sortera en lista. 
+- .sort() --> ändrar den ursprungliga listan och sorterar den.
+- .sorted() --> Skapar en ny sorterad lista utan att ändra den gamla.
+
+#### Lägga till och ta bort element:
 - För att skapa en tom lista kan man skriva: frukter = []
 - För varje lista som skapas så kan man använda funktioner som .append() och .pop()
 - .append() --> För att lägga till element i listan. Det nta elementet hamnar sist i listan när det printas.
@@ -51,3 +61,18 @@ print(frukter[-1]) #För att läsa sista elementet(Mango). [-2] för näst sista
 - frukter = ['Äpple', 'Banan', 'Mango']
 - frukter = ['Banan', 'Mango']
 - frukter = ['Banan]
+
+#### Listans längd:
+- För att se hur många element som finns i en lista kan vi använda en funktion som heter len() med listan som argument.
+- Exempel:
+- print(len(frukter))
+
+## List comprehension
+- Det är ett sätt att skapa en ny lista i Python genom att använda en kompakt syntax. Den består av tre delar.
+- Exempel:
+- Vad är resultatet av följande kod?
+- numbers = [1, 2, 3, 4, 5]
+- squared_numbers = [x**2 for x in numbers]
+- print(squared_numbers)
+- output [1, 4, 9, 16, 25]
+
