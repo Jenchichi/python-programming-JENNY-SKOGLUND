@@ -23,8 +23,8 @@ tupel [1] = "b" #Fel
 - En lista tillåter dubletter. Man kan också ha en lista inuti en lista för att skapa en matris eller tvådimensionell lista.
 - I en lista börjar man alltid räkna från noll. Det första elementet har index 0.
 - Exempel:
-frukter = ["Äpple", "Banan", "Mango"]
-print(frukter[0]) #För att läsa andra elementet skriv frukter[1]
+- frukter = ["Äpple", "Banan", "Mango"]
+- print(frukter[0]) #För att läsa andra elementet skriv frukter[1]
 
 - Man kan även använda negativa index för att gå baklänges från slutet i listan.
 - Exempel:
