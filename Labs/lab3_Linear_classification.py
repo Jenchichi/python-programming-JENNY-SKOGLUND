@@ -19,12 +19,11 @@ with open('Data/unlabelled_data.csv') as file:
         x_point.append((float(row[0])))
         y_point.append((float(row[1])))
 
+# Beräknar om punkten ligger ovanför/vänster om eller nedanför/höger om linjen
 def point_position_from_line(x_point, y_point, k, m):
-    # Beräknar om punkten ligger ovanför/vänster om eller nedanför/höger om linjen
     above_line = []
     below_line = []
     
-
     # Beräkna linjens y-värde vid punktens x-värde
     for x, y in zip(x_point, y_point):
         y_line = k * x + m
