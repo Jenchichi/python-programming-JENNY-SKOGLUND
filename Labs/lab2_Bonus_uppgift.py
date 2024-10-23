@@ -7,7 +7,8 @@ import random
 
 path = "Data/datapoints.txt"
 accuracy_medel_list = []
-
+# Denna for loop är så lång och komplicerad att det vore bra att dela upp den i mindre bitar (funktioner) som sedan körs.
+# Det skulle bli mycket lättare att läsa, förutsatt att bra namn på funktionerna valts förstås.
 for _ in range(11):
     with open(path, "r") as f:
         next(f) # Hoppar över första raden i datapoints filen
@@ -16,7 +17,7 @@ for _ in range(11):
         for line in data:
             width, hight, label = line.strip().split(",")
             data_points.append((width, hight, label))
- 
+     # istället för att ha en lokal definition inuti en for-loop vore det bättre att återanvända denna funktion från tidigare uppgift
 # Separerar datan och skapar två listor med Pichu och Pikachus punkter. Där Pichus label== 0 och Pikachus label==1
     def separate_clean_data(data):
         pichu = []
