@@ -16,6 +16,8 @@ def clean_data(data):
     return clean_data
 #print(clean_data(open(path)))
 
+# Raphael says: Det vore nog enklare att inte separera datan....
+
 # funktion som hämtar värdena från clean_data och appendar pichus x, y värde från label 0. samt pikachus x,y värde från label 1.
 def separate_clean_data(data): 
     pichu = []
@@ -28,7 +30,11 @@ def separate_clean_data(data):
             pikachu.append((float(width), float(hight)))
     return pichu, pikachu
 #print(separate_clean_data(clean_data(data)))
- 
+
+# Raphael says: I python kod skall helst alla importer ske överst i filen. Anledningen är att även när denna fil importeras från någon annanstans
+# körs filen ändå i ordning från början av filen. Så om något går fel med importerna, så har fortfarande koden ovanför körts.
+# I detta fall gör det ingen skillnad.
+
 import matplotlib.pyplot as plt
 import numpy as np
 import math
@@ -36,6 +42,7 @@ import math
 def knn_equation(pichu, pikachu, user_input, k=10): 
     classification = []
     for point in user_input:
+        # intressant approach att inte spara avstånden, utan bara använda dem som sorteringsfunktion. Blir faktiskt ganska så effektivt!
         closest_points = sorted(pichu + pikachu, key=lambda x: math.sqrt((point[0] - float(x[0]))**2 + (point[1] - float(x[1]))**2))[:k]
         labels = [0 if point in pichu else 1 for point in closest_points]
         classify = 0 if labels.count(0) > labels.count(1) else 1
