@@ -4,16 +4,21 @@
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
+import matplotlib.cm as cm
+import numpy as np
 
 def plot_missing_values(df):
     missing_values = df.isnull().sum()
     missing_values = missing_values[missing_values > 0]
 
     if not missing_values.empty:
-        sns.barplot(x=missing_values.index, y=missing_values.values)
+        colors = plt.cm.tab20(np.arange(len(missing_values)) / len(missing_values))
+        missing_values.plot(kind="bar", color=colors)
         plt.title("Missing Values")
         plt.xlabel("Column")
         plt.ylabel("Number of missing values")
+        plt.xticks(rotation=45)
+
         plt.show()
     else:
         print("No missing Values in the DataFrame")
